@@ -10,7 +10,7 @@ import ProtectedRoute from '../utils/protectedRoute.jsx';
 // Componentes importados de CLIENTES
 import Navbar from "./pages/clientPages/components/navBar";
 import Footer from "./pages/clientPages/components/footer"
-import HomePage from './pages/clientPages/homePage.jsx'
+import HomePage from './pages/clientPages/homepage.jsx'
 import MenuPage from './pages/clientPages/menuPage'
 import EventsPage from './pages/clientPages/eventsPage';
 import ReservationsPage from './pages/clientPages/reservationPage';
