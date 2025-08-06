@@ -129,9 +129,9 @@ export default function ReservationPage() {
         ...formData
       };
 
-      await axios.post('http://localhost:3000/clientBackend/reservations', reservation);
+      await axios.post('http://172.18.4.200:3000/clientBackend/reservations', reservation);
 
-      await axios.post('http://localhost:3000/clientBackend/email', {
+      await axios.post('http://172.18.4.200:3000/clientBackend/email', {
         correoCliente: formData.correoCliente,
         nombreCliente: formData.nombreCliente,
         reservacion: {

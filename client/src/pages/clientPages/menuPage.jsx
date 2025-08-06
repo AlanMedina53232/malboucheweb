@@ -26,7 +26,7 @@ export default function MenuPage() {
  useEffect(() => {
   const fetchMenuData = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/clientBackend/menu");
+      const res = await axios.get("http://172.18.4.200/clientBackend/menu");
       // Agrupa los menús por tipoMenu como antes
       const grouped = res.data.reduce((acc, item) => {
         if (!acc[item.tipoMenu]) acc[item.tipoMenu] = [];

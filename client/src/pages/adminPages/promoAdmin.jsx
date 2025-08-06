@@ -70,7 +70,7 @@ const PromoAdmin = () => {
 
   const fetchPromos = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/adminBackend/promos");
+      const res = await axios.get("http://172.18.4.200:3000/adminBackend/promos");
       const now = new Date();
       // Update status based on dates
       const updatedPromos = await Promise.all(res.data.map(async (promo) => {
@@ -82,13 +82,13 @@ const PromoAdmin = () => {
           newEstado = 'inactivo';
           // Optionally update backend
           try {
-            await axios.put(`http://localhost:3000/adminBackend/promos/${promo._id}`, { ...promo, estado: 'inactivo' });
+            await axios.put(`http://172.18.4.200:3000/adminBackend/promos/${promo._id}`, { ...promo, estado: 'inactivo' });
           } catch (e) {/* ignore error on auto-update */}
         } else if (now >= start && now <= end && promo.estado !== 'activo') {
           // Auto-activate if event is ongoing
           newEstado = 'activo';
           try {
-            await axios.put(`http://localhost:3000/adminBackend/promos/${promo._id}`, { ...promo, estado: 'activo' });
+            await axios.put(`http://172.18.4.200:3000/adminBackend/promos/${promo._id}`, { ...promo, estado: 'activo' });
           } catch (e) {/* ignore error on auto-update */}
         }
         return { ...promo, estado: newEstado };
@@ -233,10 +233,10 @@ const PromoAdmin = () => {
     }
     try {
       if (isEditMode && editingPromoId) {
-        await axios.put(`http://localhost:3000/adminBackend/promos/${editingPromoId}`, promoFormData);
+        await axios.put(`http://172.18.4.200:3000/adminBackend/promos/${editingPromoId}`, promoFormData);
         showSnackbar("Promotion updated successfully", "success");
       } else {
-        await axios.post("http://localhost:3000/adminBackend/promos", promoFormData);
+        await axios.post("http://172.18.4.200:3000/adminBackend/promos", promoFormData);
         showSnackbar("Promotion created successfully", "success");
       }
       fetchPromos();
@@ -248,7 +248,7 @@ const PromoAdmin = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/adminBackend/promos/${id}`);
+      await axios.delete(`http://172.18.4.200:3000/adminBackend/promos/${id}`);
       showSnackbar("Promotion deleted successfully", "success");
       fetchPromos();
     } catch (error) {
@@ -473,7 +473,7 @@ const PromoAdmin = () => {
                               color="error"
                               onClick={async () => {
                                 try {
-                                  await axios.put(`http://localhost:3000/adminBackend/promos/${promo._id}`, {
+                                  await axios.put(`http://172.18.4.200:3000/adminBackend/promos/${promo._id}`, {
                                     ...promo,
                                     estado: 'inactivo'
                                   });
@@ -494,7 +494,7 @@ const PromoAdmin = () => {
                               sx={{ color: 'green' }}
                               onClick={async () => {
                                 try {
-                                  await axios.put(`http://localhost:3000/adminBackend/promos/${promo._id}`, {
+                                  await axios.put(`http://172.18.4.200:3000/adminBackend/promos/${promo._id}`, {
                                     ...promo,
                                     estado: 'activo'
                                   });
@@ -643,7 +643,7 @@ const PromoAdmin = () => {
                         const formData = new FormData();
                         formData.append('file', file);
                         try {
-                          const res = await axios.post('http://localhost:3000/adminBackend/upload/image', formData, {
+                          const res = await axios.post('http://172.18.4.200:3000/adminBackend/upload/image', formData, {
                             headers: { 'Content-Type': 'multipart/form-data' }
                           });
                           setPromoFormData(prev => ({ ...prev, imagen: res.data.url }));

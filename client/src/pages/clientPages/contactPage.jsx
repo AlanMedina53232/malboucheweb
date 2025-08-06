@@ -82,7 +82,7 @@ export default function ContactPage() {
     if (!validateForm()) return;
 
     try {
-      const response = await fetch("http://localhost:3000/clientBackend/feedback/send-feedback", {
+      const response = await fetch("http://172.18.4.200:3000/clientBackend/feedback/send-feedback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

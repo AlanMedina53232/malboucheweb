@@ -19,12 +19,12 @@ const MenusUser = () => {
   }, []);
 
   const fetchMenus = async () => {
-    const res = await axios.get("http://localhost:3000/userBackend/menu");
+    const res = await axios.get("http://172.18.4.200:3000/userBackend/menu");
     setMenus(res.data);
   };
 
   const fetchProductos = async () => {
-    const res = await axios.get("http://localhost:3000/userBackend/producto");
+    const res = await axios.get("http://172.18.4.200:3000/userBackend/producto");
     setProductos(res.data);
   };
 
@@ -51,7 +51,7 @@ const MenusUser = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/userBackend/menu", form);
+      await axios.post("http://172.18.4.200:3000/userBackend/menu", form);
       fetchMenus();
       setForm({ _id: "", nombre: "", tipoMenu: "", estado: "activo", productos: [{ IDProducto: "" }] });
     } catch (error) {
@@ -60,7 +60,7 @@ const MenusUser = () => {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:3000/userBackend/menu/${id}`);
+    await axios.delete(`http://172.18.4.200:3000/userBackend/menu/${id}`);
     fetchMenus();
   };
 

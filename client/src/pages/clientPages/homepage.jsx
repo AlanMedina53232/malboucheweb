@@ -40,7 +40,7 @@ export default function HomePage() {
 
 
 useEffect(() => {
-  axios.get("http://localhost:3000/clientBackend/destacados-home")
+  axios.get("http://172.18.4.200/clientBackend/destacados-home")
     .then(res => setMenuData(res.data))
     .catch(() => setMenuData([]));
 }, []);
@@ -52,7 +52,7 @@ useEffect(() => {
 const [promociones, setPromociones] = useState([]);
 
 useEffect(() => {
-  axios.get("http://localhost:3000/clientBackend/promociones-activas")
+  axios.get("http://172.18.4.200:3000/clientBackend/promociones-activas")
     .then(res => setPromociones(res.data))
     .catch(() => setPromociones([]));
 }, []);

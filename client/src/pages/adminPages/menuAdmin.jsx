@@ -245,10 +245,10 @@ const MenuAdmin = () => {
       };
       try {
         if (isEditMode) {
-          await axios.put(`http://localhost:3000/adminBackend/menus/${selectedMenu._id}`, newMenu);
+          await axios.put(`http://172.18.4.200:3000/adminBackend/menus/${selectedMenu._id}`, newMenu);
           showSnackbar('Menu updated successfully!', 'success');
         } else {
-          await axios.post("http://localhost:3000/adminBackend/menus", newMenu);
+          await axios.post("http://172.18.4.200:3000/adminBackend/menus", newMenu);
           showSnackbar('Menu created successfully!', 'success');
         }
         await fetchMenus();
@@ -306,11 +306,11 @@ const MenuAdmin = () => {
     showConfirmDialog(title, message, async () => {
       try {
         if (isEditMode) {
-          await axios.put(`http://localhost:3000/adminBackend/productos/${productFormData._id}`, productFormData);
+          await axios.put(`http://172.18.4.200:3000/adminBackend/productos/${productFormData._id}`, productFormData);
           showSnackbar('Product updated successfully!', 'success');
         } else {
           const { _id, ...productDataSinId } = productFormData;
-          await axios.post("http://localhost:3000/adminBackend/productos", productDataSinId);
+          await axios.post("http://172.18.4.200:3000/adminBackend/productos", productDataSinId);
           showSnackbar('Product created successfully!', 'success');
         }
         await fetchProductos();
@@ -337,7 +337,7 @@ const MenuAdmin = () => {
       async () => {
         try {
           const updatedProduct = { ...producto, estado: isActive ? 'inactivo' : 'activo' };
-          await axios.put(`http://localhost:3000/adminBackend/productos/${id}`, updatedProduct);
+          await axios.put(`http://172.18.4.200:3000/adminBackend/productos/${id}`, updatedProduct);
           await fetchProductos();
           await fetchMenus();
           showSnackbar(`Product ${isActive ? 'deactivated' : 'activated'} successfully!`, 'success');
@@ -379,7 +379,7 @@ const MenuAdmin = () => {
             estado: newEstado,
             productos: productosFormateados
           };
-          await axios.put(`http://localhost:3000/adminBackend/menus/${id}`, updatedMenu);
+          await axios.put(`http://172.18.4.200:3000/adminBackend/menus/${id}`, updatedMenu);
           await fetchMenus();
           showSnackbar(`Menu ${isActive ? 'deactivated' : 'activated'} successfully!`, 'success');
         } catch (err) {
@@ -425,7 +425,7 @@ const MenuAdmin = () => {
 
   const fetchProductos = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/adminBackend/productos");
+      const res = await axios.get("http://172.18.4.200:3000/adminBackend/productos");
       setProductos(res.data);
     } catch {
       console.error("Error loading products");
@@ -434,7 +434,7 @@ const MenuAdmin = () => {
 
   const fetchMenus = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/adminBackend/menus");
+      const res = await axios.get("http://172.18.4.200:3000/adminBackend/menus");
       setMenus(res.data);
     } catch {
       console.error("Error loading menus");

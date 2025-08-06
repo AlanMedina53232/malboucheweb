@@ -78,12 +78,12 @@ const DashboardIoT = () => {
     setLoading(true);
     setError("");
     Promise.all([
-      axios.get("http://localhost:3000/adminBackend/iot/dht11"),
-      axios.get("http://localhost:3000/adminBackend/iot/ultrasonico"),
-      axios.get("http://localhost:3000/adminBackend/iot/mlx90614"),
-      axios.get("http://localhost:3000/adminBackend/iot/aggregate/dht11"),
-      axios.get("http://localhost:3000/adminBackend/iot/aggregate/ultrasonico"),
-      axios.get("http://localhost:3000/adminBackend/iot/aggregate/mlx90614")
+      axios.get("http://172.18.4.200:3000/adminBackend/iot/dht11"),
+      axios.get("http://172.18.4.200:3000/adminBackend/iot/ultrasonico"),
+      axios.get("http://172.18.4.200:3000/adminBackend/iot/mlx90614"),
+      axios.get("http://172.18.4.200:3000/adminBackend/iot/aggregate/dht11"),
+      axios.get("http://172.18.4.200:3000/adminBackend/iot/aggregate/ultrasonico"),
+      axios.get("http://172.18.4.200:3000/adminBackend/iot/aggregate/mlx90614")
     ])
       .then(([dhtRes, ultraRes, mlxRes, dhtStatsRes, ultraStatsRes, mlxStatsRes]) => {
         setDHTData(Array.isArray(dhtRes.data) ? dhtRes.data : []);
@@ -104,7 +104,7 @@ const DashboardIoT = () => {
   const fetchHistorical = async () => {
     setLoadingHistorical(true);
     setHistoricalError('');
-    let url = `http://localhost:3000/adminBackend/iot/historico/${selectedSensor}`;
+    let url = `http://172.18.4.200:3000/adminBackend/iot/historico/${selectedSensor}`;
     const params = {};
     if (startDate) params.startDate = startDate;
     if (endDate) params.endDate = endDate;
@@ -285,7 +285,7 @@ const DashboardIoT = () => {
     }
     try {
       const response = await axios.post(
-        'http://localhost:3000/adminBackend/iot/historico/export/pdf',
+        'http://172.18.4.200:3000/adminBackend/iot/historico/export/pdf',
         { sensor: selectedSensor, data: rows, chartImage },
         { responseType: 'blob' }
       );

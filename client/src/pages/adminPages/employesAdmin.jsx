@@ -106,7 +106,7 @@ export default function EmployesAdmin() {
     }
     try {
       const nuevoEstado = empleadoToStatus.estado === "activo" ? "inactivo" : "activo";
-      await axios.put(`http://localhost:3000/adminBackend/empleados/${empleadoToStatus._id}`, {
+      await axios.put(`http://172.18.4.200:3000/adminBackend/empleados/${empleadoToStatus._id}`, {
         ...empleadoToStatus,
         estado: nuevoEstado,
         confirmPassword: statusConfirmPassword
@@ -154,8 +154,8 @@ export default function EmployesAdmin() {
 
 
     const url = modoEdicion
-      ? `http://localhost:3000/adminBackend/empleados/${formData._id}`
-      : "http://localhost:3000/adminBackend/empleados";
+      ? `http://172.18.4.200:3000/adminBackend/empleados/${formData._id}`
+      : "http://172.18.4.200:3000/adminBackend/empleados";
 
     // Solo generar y enviar password si es registro nuevo
     let payload;
@@ -177,7 +177,7 @@ export default function EmployesAdmin() {
         showSnackbar("Employee registered successfully.", "success");
 
         // --- AQUÍ SE ENVÍA EL CORREO DE BIENVENIDA ---
-        await axios.post("http://localhost:3000/adminBackend/email/bienvenida-empleado", {
+        await axios.post("http://172.18.4.200:3000/adminBackend/email/bienvenida-empleado", {
           toEmail: formData.correo,
           nombre: formData.nombre,
           primerApellido: formData.primerApellido,
@@ -242,7 +242,7 @@ export default function EmployesAdmin() {
 
   const fetchEmpleados = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/adminBackend/empleados");
+      const res = await axios.get("http://172.18.4.200:3000/adminBackend/empleados");
       setEmpleados(res.data);
     } catch (error) {
       showSnackbar("Error al cargar empleados", "error");

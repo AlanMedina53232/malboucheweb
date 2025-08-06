@@ -47,7 +47,7 @@ const ReservationAdmin = () => {
       try {
         // Si hay filtro de día de la semana
         if (filtroDiaSemana !== "") {
-          const res = await axios.get("http://localhost:3000/adminBackend/reservations/by-weekday", {
+          const res = await axios.get("http://172.18.4.200:3000/adminBackend/reservations/by-weekday", {
             params: { weekday: filtroDiaSemana }
           });
           setReservaciones(res.data);
@@ -62,7 +62,7 @@ const ReservationAdmin = () => {
         if (filtroEstado && filtroEstado !== 'finalizada') {
           params.estado = filtroEstado;
         }
-        const res = await axios.get("http://localhost:3000/adminBackend/reservations", { params });
+        const res = await axios.get("http://172.18.4.200:3000/adminBackend/reservations", { params });
         setReservaciones(res.data);
       } catch {
         setError("Error loading reservations");
@@ -169,10 +169,10 @@ const ReservationAdmin = () => {
     if (!motivo.trim()) return;
     try {
       // 1. Cancela la reservación en el backend
-      await axios.patch(`http://localhost:3000/adminBackend/reservations/${selected._id}/cancel`, { motivo });
+      await axios.patch(`http://172.18.4.200:3000/adminBackend/reservations/${selected._id}/cancel`, { motivo });
 
       // 2. Envía el correo de cancelación usando tu endpoint
-      await axios.post("http://localhost:3000/adminBackend/email-reserva/cancel-reservation", {
+      await axios.post("http://172.18.4.200:3000/adminBackend/email-reserva/cancel-reservation", {
         toEmail: selected.correoCliente,
         nombreCliente: selected.nombreCliente,
         folio: selected._id,
@@ -194,7 +194,7 @@ const ReservationAdmin = () => {
       if (filtroEstado) {
         params.estado = filtroEstado;
       }
-      const res = await axios.get("http://localhost:3000/adminBackend/reservations", { params });
+      const res = await axios.get("http://172.18.4.200:3000/adminBackend/reservations", { params });
       setReservaciones(res.data);
     } catch {
       setError("Error cancelling reservation");

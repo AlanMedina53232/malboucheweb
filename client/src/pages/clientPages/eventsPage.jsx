@@ -22,7 +22,7 @@ export default function EventsPage() {
   useEffect(() => {
     const obtenerEventos = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/clientBackend/events");
+        const res = await axios.get("http://172.18.4.200/clientBackend/events");
         const data = res.data;
         const activos = data.filter(ev => ev.estado === 'activo');
         setEventosOriginales(activos);

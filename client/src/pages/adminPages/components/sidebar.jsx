@@ -91,7 +91,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
         const decoded = jwtDecode(token);
         const correo = decoded.correo || decoded.email || decoded.user || decoded.username;
         if (correo) {
-          axios.get(`http://localhost:3000/authJWT/auth/userinfo?correo=${encodeURIComponent(correo)}`)
+          axios.get(`http://172.18.4.200:3000/authJWT/auth/userinfo?correo=${encodeURIComponent(correo)}`)
             .then(res => {
               // Si la respuesta tiene id pero no _id, mapea id a _id
               const userData = res.data;
@@ -521,7 +521,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
                             return;
                           }
                           await axios.put(
-                            `http://localhost:3000/adminBackend/empleados/${userInfo._id}`,
+                            `http://172.18.4.200:3000/adminBackend/empleados/${userInfo._id}`,
                             {
                               password: newPassword,
                               confirmPassword: currentPassword

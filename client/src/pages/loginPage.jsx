@@ -15,7 +15,7 @@ export default function LoginPage() {
     setMensaje('');
 
     try {
-      const res = await axios.post('http://localhost:3000/authJWT/auth/login', {
+      const res = await axios.post('http://172.18.4.200:3000/authJWT/auth/login', {
         correo: email,
         password: password,
       });

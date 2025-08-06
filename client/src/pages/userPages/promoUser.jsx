@@ -18,7 +18,7 @@ export default function PromoUser() {
   }, []);
 
   const obtenerPromociones = async () => {
-    const res = await axios.get("http://localhost:3000/userBackend/promocion");
+    const res = await axios.get("http://172.18.4.200:3000/userBackend/promocion");
     setPromociones(res.data);
   };
 
@@ -30,7 +30,7 @@ export default function PromoUser() {
     e.preventDefault();
     if (form._id === "") return;
     try {
-      await axios.post("http://localhost:3000/userBackend/promocion", form);
+      await axios.post("http://172.18.4.200:3000/userBackend/promocion", form);
       obtenerPromociones();
       setForm({
         _id: "",
@@ -48,7 +48,7 @@ export default function PromoUser() {
 
   const manejarEliminar = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/userBackend/promocion/${id}`);
+      await axios.delete(`http://172.18.4.200:3000/userBackend/promocion/${id}`);
       obtenerPromociones();
     } catch (error) {
       console.error("Error al eliminar promoción", error);
@@ -58,7 +58,7 @@ export default function PromoUser() {
   const manejarActualizar = async () => {
     try {
       await axios.put(
-        `http://localhost:3000/userBackend/promocion/${form._id}`,
+        `http://172.18.4.200:3000/userBackend/promocion/${form._id}`,
         form
       );
       obtenerPromociones();

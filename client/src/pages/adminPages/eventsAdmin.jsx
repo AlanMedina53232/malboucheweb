@@ -85,7 +85,7 @@ const EventsAdmin = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/adminBackend/events');
+      const response = await axios.get('http://172.18.4.200:3000/adminBackend/events');
       // Mapear fechaEvento a fecha para el frontend
       const mapped = response.data.map(ev => ({
         ...ev,
@@ -216,7 +216,7 @@ const handleOpenEventForm = (event = null) => {
       let newId = eventFormData._id;
       if (!isEditMode || !newId) {
         // Obtener el número de eventos actuales
-        const response = await axios.get('http://localhost:3000/adminBackend/events');
+        const response = await axios.get('http://172.18.4.200:3000/adminBackend/events');
         const count = Array.isArray(response.data) ? response.data.length : 0;
         // Formato: EVENTN
         newId = `EVENT${count+1}`;
@@ -238,10 +238,10 @@ const handleOpenEventForm = (event = null) => {
         imagen: typeof imagen === 'string' ? imagen : '',
       };
       if (isEditMode) {
-        await axios.put(`http://localhost:3000/adminBackend/events/${eventFormData._id}`, payload);
+        await axios.put(`http://172.18.4.200:3000/adminBackend/events/${eventFormData._id}`, payload);
         showSnackbar('Event updated successfully', 'success');
       } else {
-        await axios.post('http://localhost:3000/adminBackend/events', payload);
+        await axios.post('http://172.18.4.200:3000/adminBackend/events', payload);
         showSnackbar('Event created successfully', 'success');
       }
       await fetchEvents();
@@ -457,7 +457,7 @@ const handleOpenEventForm = (event = null) => {
                               color="error"
                               onClick={async () => {
                                 try {
-                                  await axios.put(`http://localhost:3000/adminBackend/events/${event._id}`, {
+                                  await axios.put(`http://172.18.4.200:3000/adminBackend/events/${event._id}`, {
                                     ...event,
                                     estado: 'cancelado'
                                   });
@@ -478,7 +478,7 @@ const handleOpenEventForm = (event = null) => {
                               sx={{ color: 'green' }}
                               onClick={async () => {
                                 try {
-                                  await axios.put(`http://localhost:3000/adminBackend/events/${event._id}`, {
+                                  await axios.put(`http://172.18.4.200:3000/adminBackend/events/${event._id}`, {
                                     ...event,
                                     estado: 'activo'
                                   });
@@ -639,7 +639,7 @@ const handleOpenEventForm = (event = null) => {
                   const formData = new FormData();
                   formData.append('file', file);
                   try {
-                    const res = await axios.post('http://localhost:3000/adminBackend/upload/image', formData, {
+                    const res = await axios.post('http://172.18.4.200:3000/adminBackend/upload/image', formData, {
                       headers: { 'Content-Type': 'multipart/form-data' }
                     });
                     setEventFormData(prev => ({ ...prev, imagen: res.data.url }));
